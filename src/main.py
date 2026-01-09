@@ -1,4 +1,5 @@
 import pygame, time, os
+from engine.game_state import Title
 
 class Game:
 
@@ -13,6 +14,7 @@ class Game:
         self.dt, self.prev_time = 0, 0
         self.state_stack = []
         self.load_assets()
+        self.load_states()
 
 
     def get_event(self):
@@ -38,10 +40,11 @@ class Game:
                 if event.key == pygame.K_RETURN: self.action["return"] = False
 
     def update(self):
-        pass
+        self.state_stack[-1].update(self.dt, self.action)
 
     def render(self):
-        self.screen.blit(pygame.transform.scale(self.gameCanvas, (self.Game_W, self.Game_H)), (0, 0))
+        self.state_stack[-1].render(self.gameCanvas)
+        self.screen.blit(pygame.transform.scale(self.gameCanvas, (self.SCREEN_WIDTH, self.SCREEN_HEIGHT)), (0, 0))
         pygame.display.flip()
 
     def get_dt(self):
@@ -63,6 +66,14 @@ class Game:
         self.font_dir = os.path.join(self.assets_dir, "fonts")
         #self.font = pygame.font.Font(os.path.join(self.font_dir, ""))
         self.font = pygame.font.SysFont("Consolas", 24)
+
+    def load_states(self):
+        self.title_screen = Title(self)
+        self.state_stack.append(self.title_screen)
+
+    def reset_keys(self):
+        for action in self.action:
+            self.action[action] = False
 
     def mainloop(self):
         while self.playing:
