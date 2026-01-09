@@ -17,34 +17,26 @@ class Game:
 
     def get_event(self):
         for event in pygame.event.get():
+
             if event.type == pygame.QUIT:
                 self.running, self.playing = False, False
+
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_w:
-                    self.action["up"] = True
-                if event.key == pygame.K_s:
-                    self.action["down"] = True
-                if event.key == pygame.K_a:
-                    self.action["left"] = True
-                if event.key == pygame.K_d:
-                    self.action["right"] = True
-                if event.key == pygame.K_ESCAPE:
-                    self.action["escape"] = True
-                if event.key == pygame.K_RETURN:
-                    self.action["return"] = True
+                if event.key == pygame.K_w: self.action["up"] = True
+                if event.key == pygame.K_s: self.action["down"] = True
+                if event.key == pygame.K_a: self.action["left"] = True
+                if event.key == pygame.K_d: self.action["right"] = True
+                if event.key == pygame.K_ESCAPE: self.action["escape"] = True
+                if event.key == pygame.K_RETURN: self.action["return"] = True
+
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_w:
-                    self.action["up"] = False
-                if event.key == pygame.K_s:
-                    self.action["down"] = False
-                if event.key == pygame.K_a:
-                    self.action["left"] = False
-                if event.key == pygame.K_d:
-                    self.action["right"] = False
-                if event.key == pygame.K_ESCAPE:
-                    self.action["escape"] = False
-                if event.key == pygame.K_RETURN:
-                    self.action["return"] = False
+                if event.key == pygame.K_w: self.action["up"] = False
+                if event.key == pygame.K_s: self.action["down"] = False
+                if event.key == pygame.K_a: self.action["left"] = False
+                if event.key == pygame.K_d: self.action["right"] = False
+                if event.key == pygame.K_ESCAPE: self.action["escape"] = False
+                if event.key == pygame.K_RETURN: self.action["return"] = False
+
     def update(self):
         pass
 
