@@ -37,7 +37,7 @@ class Title(State):
 class Dungeon(State):
     def __init__(self, game):
         State.__init__(self, game)
-        self.Dungeon_Bg = pygame.image.load(os.path.join(game.background_dir, "dungeon.png"))
+        self.Dungeon_Bg = pygame.image.load(os.path.join(game.background_dir, "Background-d1.png"))
 
     def update(self, delta_time, actions):
         pass

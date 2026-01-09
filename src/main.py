@@ -8,7 +8,7 @@ class Game:
 
         pygame.display.set_caption('Jaimer Game')
 
-        self.Game_W, self.Game_H = 480, 270
+        self.Game_W, self.Game_H = 960, 540
         self.SCREEN_WIDTH, self.SCREEN_HEIGHT = 960, 540
         self.gameCanvas = pygame.Surface((self.Game_W, self.Game_H))
         self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
