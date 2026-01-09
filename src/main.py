@@ -5,6 +5,9 @@ class Game:
 
     def __init__(self):
         pygame.init()
+
+        pygame.display.set_caption('Jaimer Game')
+
         self.Game_W, self.Game_H = 480, 270
         self.SCREEN_WIDTH, self.SCREEN_HEIGHT = 960, 540
         self.gameCanvas = pygame.Surface((self.Game_W, self.Game_H))
@@ -54,18 +57,18 @@ class Game:
 
     def draw_text(self, surface, text, color, x_pos, y_pos):
         text_surface = self.font.render(text, True, color)
-        #text_surface.set_colorkey((0,0,0))
         text_rect = text_surface.get_rect()
         text_rect.center = (x_pos, y_pos)
         surface.blit(text_surface, text_rect)
 
     def load_assets(self):
         # Create pointers to directories
-        self.assets_dir = os.path.join("assets")
+        self.game_dir = str(os.path.dirname(__file__).replace("src", ""))
+        self.assets_dir = os.path.join(self.game_dir, "assets")
         self.sprites_dir = os.path.join(self.assets_dir, "sprites")
         self.font_dir = os.path.join(self.assets_dir, "fonts")
-        #self.font = pygame.font.Font(os.path.join(self.font_dir, ""))
-        self.font = pygame.font.SysFont("Consolas", 24)
+        self.background_dir = os.path.join(self.assets_dir, "background")
+        self.font = pygame.font.Font(os.path.join(self.font_dir, "Slabo27px-Regular.ttf"), 48)
 
     def load_states(self):
         self.title_screen = Title(self)

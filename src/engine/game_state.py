@@ -1,4 +1,6 @@
-class state:
+import pygame, os
+
+class State:
 
     def __init__(self, game):
         self.game = game
@@ -18,13 +20,27 @@ class state:
     def exit_state(self):
         self.game.state_stack.pop()
 
-class Title(state):
+class Title(State):
     def __init__(self, game):
-        state.__init__(self, game)
+        State.__init__(self, game)
 
     def update(self, delta_time, actions):
+        if actions["return"]:
+            new_state = Dungeon(self.game)
+            new_state.enter_state()
         self.game.reset_keys()
 
     def render(self, display):
         display.fill((255, 255, 255))
         self.game.draw_text(display, "Game States Demo", (0,0,0), self.game.Game_W/2 , self.game.Game_H/2)
+
+class Dungeon(State):
+    def __init__(self, game):
+        State.__init__(self, game)
+        self.Dungeon_Bg = pygame.image.load(os.path.join(game.background_dir, "dungeon.png"))
+
+    def update(self, delta_time, actions):
+        pass
+
+    def render(self, display):
+        display.blit(self.Dungeon_Bg, (0, 0))
