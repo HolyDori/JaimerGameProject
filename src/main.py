@@ -1,5 +1,5 @@
 import pygame, time, os
-from engine.game_state import Title
+from states.Title import Title
 
 class Game:
 
